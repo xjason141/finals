@@ -1,19 +1,21 @@
 #!/usr/bin/env python3
 
 import os
-from datetime import date
+import datetime
 import reports
+
+date = datetime.datetime.now().strftime('%d-%B-%Y')
 
 desc_dir = 'catalog-updater/supplier-data/descriptions/'
 desc_files = os.listdir(desc_dir)
 
 
-def generate_pdf():
+def generate_pdf(filepath):
     blank = ''
     pdf_report = ''
     for files in desc_files:
         if files.endswith('txt'):
-            with open(desc_dir + files, 'r') as file:
+            with open(filepath + files, 'r') as file:
                 lines = file.readlines()
                 name = lines[0].strip()
                 weight = lines[1].strip()
@@ -22,3 +24,8 @@ def generate_pdf():
         # print(pdf_report)
     return pdf_report
 
+
+if __name__ == '__main__':
+    title = 'PDF generated on ' + date
+    data = generate_pdf(desc_dir)
+    reports.generate_report('/tmp.processed.pdf', title, data)
