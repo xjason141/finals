@@ -3,9 +3,8 @@
 import os
 from PIL import Image
 
-img_path = 'catalog-updater/supplier-data/images'
-# new_dir = r'catalog-updater/supplier-data/converted/'
-save_point = 'catalog-updater/supplier-data/images/'
+img_path = 'supplier-data/images'
+save_point = 'supplier-data/images/'
 
 
 if not os.path.exists(save_point):
